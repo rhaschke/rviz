@@ -2,6 +2,57 @@
 Changelog for package rviz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.11.18 (2017-08-21)
+--------------------
+* Replaced Arial font with Liberation Sans (`#1141 <https://github.com/ros-visualization/rviz/issues/1141>`_) (`#1143 <https://github.com/ros-visualization/rviz/issues/1143>`_)
+* Contributors: William Woodall
+
+1.11.17 (2017-08-04)
+--------------------
+* Add dhood as maintainer (`#1133 <https://github.com/ros-visualization/rviz/issues/1133>`_)
+* Fixed rendering of markers as reported in #1120 (`#1132 <https://github.com/ros-visualization/rviz/issues/1132>`_)
+* Contributors: William Woodall
+
+1.11.16 (2017-06-05)
+--------------------
+* indigo-devel backports from kinetic-devel (1.12.9) (`#1110 <https://github.com/ros-visualization/rviz/issues/1110>`_)
+  * Add fullscreen option (`#1017 <https://github.com/ros-visualization/rviz/issues/1017>`_)
+  * Added compatibility with newer urdfdom versions (`#1064 <https://github.com/ros-visualization/rviz/issues/1064>`_)
+  * Display is now updated if an empty pointcloud2 is published (`#1073 <https://github.com/ros-visualization/rviz/issues/1073>`_)
+  * The render panel is now scaled correctly on high resolution displays (`#1078 <https://github.com/ros-visualization/rviz/issues/1078>`_)
+  * Now supports multiple materials per link in robot display (urdf) (fixed) (`#1079 <https://github.com/ros-visualization/rviz/issues/1079>`_)
+  * Fixed duplicate property name for Path colors which prevent saving correctly to the config file (`#1089 <https://github.com/ros-visualization/rviz/issues/1089>`_)
+* Now supports multiple materials for one link in robot display (urdf) (`#1080 <https://github.com/ros-visualization/rviz/issues/1080>`_)
+* Fixed visualization of collada textures in markers (`#1084 <https://github.com/ros-visualization/rviz/issues/1084>`_)
+* Contributors: Kei Okada, Marieke Copejans, William Woodall
+
+1.11.15 (2016-10-18)
+--------------------
+* Pose arrays can now be rendered as 3D arrows or pose markers (`#1016 <https://github.com/ros-visualization/rviz/issues/1016>`_)
+* Allow float edits to work with different Locales
+  * (`#1043 <https://github.com/ros-visualization/rviz/issues/1043>`_)
+  * (`#1058 <https://github.com/ros-visualization/rviz/issues/1058>`_)
+* Fix double free in display dialog.
+  * (`#1053 <https://github.com/ros-visualization/rviz/issues/1053>`_)
+  * (`#1057 <https://github.com/ros-visualization/rviz/issues/1057>`_)
+* Now check for a valid root link before walking the robot model (`#1039 <https://github.com/ros-visualization/rviz/issues/1039>`_)
+* Fixed two valgrind-reported issues (`#1001 <https://github.com/ros-visualization/rviz/issues/1001>`_)
+  * in ~RenderPanel()
+  * in VisualizationManager(): initialization order
+* Updated the marker display and tf plugins to save the enabled namespaces and frames when changed.
+  * Also updated the plugins so that is saved whenever the plugin is reset.
+  * This also allows the currently selected namespaces/frames to remain selected after the "Reset" button is pressed.
+  * (`#988 <https://github.com/ros-visualization/rviz/issues/988>`_)
+  * (`#989 <https://github.com/ros-visualization/rviz/issues/989>`_)
+* Generalized the WrenchVisual class (`#982 <https://github.com/ros-visualization/rviz/issues/982>`_)
+  * generalized WrenchStampedVisual::setMessage()
+  * alternative API: WrenchStampedVisual::setWrench(OgreVector3 force, OgreVector3 torque)
+  * expose SceneNode::setVisible()
+  * separate scene nodes for force and torque marker
+  * retain API compatibility
+  * retain ABI compatibility
+* Contributors: Maarten de Vries, Michael Görner, Robert Haschke, Ron Tajima, William Woodall
+
 1.11.14 (2016-04-03)
 --------------------
 * Added the ``rviz_QT_VERSION`` cmake variable that exports the Qt version used by rviz.

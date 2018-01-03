@@ -17,6 +17,8 @@ find_package(Boost REQUIRED
   thread
 )
 
+find_package(urdfdom_headers REQUIRED)
+
 find_package(PkgConfig REQUIRED)
 
 find_package(ASSIMP QUIET)
@@ -132,6 +134,7 @@ find_package(catkin REQUIRED
   tf
   urdf
   visualization_msgs
+  urdfdom_headers
 )
 
 if(${tf_VERSION} VERSION_LESS "1.11.3")
@@ -204,6 +207,7 @@ include_directories(SYSTEM
   ${OGRE_OV_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIR}
   ${PYTHON_INCLUDE_PATH}
+  ${urdfdom_headers_INCLUDE_DIRS}
 )
 include_directories(src ${catkin_INCLUDE_DIRS})
 
