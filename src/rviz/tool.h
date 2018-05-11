@@ -79,6 +79,8 @@ public:
 
   bool accessAllKeys() { return access_all_keys_; }
 
+  void setAccesAllKeys(bool access_all_keys) { access_all_keys_ = access_all_keys; }
+
   virtual void activate() = 0;
   virtual void deactivate() = 0;
 

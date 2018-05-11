@@ -127,6 +127,14 @@ bool ToolManager::toKey( QString const& str, uint& key )
   }
 }
 
+void ToolManager::setToolHotkeysEnabled(bool enable)
+{
+  for( int i = 0; i < tools_.size(); i++ )
+  {
+    tools_[ i ]->setAccesAllKeys(enable);
+  }
+}
+
 void ToolManager::handleChar( QKeyEvent* event, RenderPanel* panel )
 {
   // if the incoming key is ESC fallback to the default tool
