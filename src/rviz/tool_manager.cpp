@@ -148,7 +148,7 @@ void ToolManager::handleChar( QKeyEvent* event, RenderPanel* panel )
   auto tool_it = shortkey_to_tool_map_.find(event->key());
   if( tool_it != shortkey_to_tool_map_.end() )
   {
-    Tool* tool = *tool_it;
+    Tool* tool = tool_it->second;
     // if tool matches the current tool
     if( current_tool_ == tool)
     {
