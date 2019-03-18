@@ -129,44 +129,44 @@ bool ToolManager::toKey( QString const& str, uint& key )
 
 void ToolManager::setToolHotkeysEnabled(bool enable)
 {
-  for( int i = 0; i < tools_.size(); i++ )
-  {
-    tools_[ i ]->setAccesAllKeys(enable);
-  }
+  hotkeys_enabled_ = !hotkeys_enabled_;
 }
 
 void ToolManager::handleChar( QKeyEvent* event, RenderPanel* panel )
 {
-  // if the incoming key is ESC fallback to the default tool
-  if( event->key() == Qt::Key_Escape )
+  if (hotkeys_enabled_)
   {
-    setCurrentTool( getDefaultTool() );
-    return;
-  }
-
-  // check if the incoming key triggers the activation of another tool
-  auto tool_it = shortkey_to_tool_map_.find(event->key());
-  if( tool_it != shortkey_to_tool_map_.end() )
-  {
-    Tool* tool = tool_it->second;
-    // if tool matches the current tool
-    if( current_tool_ == tool)
+    // if the incoming key is ESC fallback to the default tool
+    if( event->key() == Qt::Key_Escape )
     {
-      // ... deactivate the current tool and fallback to default
       setCurrentTool( getDefaultTool() );
+      return;
     }
-    else
+
+    // check if the incoming key triggers the activation of another tool
+    auto tool_it = shortkey_to_tool_map_.find(event->key());
+    if( tool_it != shortkey_to_tool_map_.end() )
     {
-      // if no, check if the current tool accesses all key events
-      if( current_tool_->accessAllKeys() )
+      Tool* tool = tool_it->second;
+      // if tool matches the current tool
+      if( current_tool_ == tool)
       {
-        // if yes, pass the key
-        current_tool_->processKeyEvent( event, panel );
+        // ... deactivate the current tool and fallback to default
+        setCurrentTool( getDefaultTool() );
       }
       else
       {
-        // if no, switch the tool
-        setCurrentTool( tool );
+        // if no, check if the current tool accesses all key events
+        if( current_tool_->accessAllKeys() )
+        {
+          // if yes, pass the key
+          current_tool_->processKeyEvent( event, panel );
+        }
+        else
+        {
+          // if no, switch the tool
+          setCurrentTool( tool );
+        }
       }
     }
   }
