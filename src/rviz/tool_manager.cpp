@@ -129,7 +129,7 @@ bool ToolManager::toKey( QString const& str, uint& key )
 
 void ToolManager::setToolHotkeysEnabled(bool enable)
 {
-  hotkeys_enabled_ = !hotkeys_enabled_;
+  hotkeys_enabled_ = enable;
 }
 
 void ToolManager::handleChar( QKeyEvent* event, RenderPanel* panel )
