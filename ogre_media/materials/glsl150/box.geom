@@ -24,7 +24,8 @@ in VertexData {
 } vdata[];
 
 
-out vec4 gl_TexCoord[];
+out vec4 color;
+out vec2 TexCoord;
 
 layout(points) in;
 layout(triangle_strip, max_vertices=24) out;
@@ -43,12 +44,12 @@ void emitVertex( int side, vec4 x, vec4 y, vec4 z, vec3 tex, vec4 size_factor )
   vec4 pos_rel = tex.x*x + tex.y*y + tex.z*z;
   vec4 pos = gl_in[0].gl_Position + vec4( pos_rel * size_factor );
   gl_Position = worldviewproj_matrix * pos;
-  gl_TexCoord[0] = vec4( tex.x*0.5+0.5, tex.y*0.5+0.5, 0.0, 0.0 );
+  TexCoord = vec2(tex.x*0.5+0.5, tex.y*0.5+0.5);
 
 #ifdef WITH_LIGHTING
-    gl_FrontColor = vec4( vdata[0].color.rgb * lightness[side], vdata[0].color.a );
+    color = vec4( vdata[0].color.rgb * lightness[side], vdata[0].color.a );
 #else
-    gl_FrontColor = vdata[0].color;
+    color = vdata[0].color;
 #endif
 
 #ifdef WITH_DEPTH
