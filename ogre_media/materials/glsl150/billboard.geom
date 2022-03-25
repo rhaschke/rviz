@@ -19,12 +19,12 @@ uniform mat4 worldviewproj_matrix;
 uniform vec4 size;
 uniform vec4 auto_size;
 
-in gl_PerVertex {
-	vec4 gl_Position;
-	vec4 gl_FrontColor;
-} gl_in[];
+in VertexData {
+	vec4 color;
+} vdata[];
 
-out vec4 gl_TexCoord[];
+out vec4 color;
+out vec2 texCoord;
 
 layout(points) in;
 layout(triangle_strip, max_vertices=4) out;
@@ -34,8 +34,8 @@ void emitVertex( vec3 pos_rel, vec3 tex )
   pos_rel = mat3(inverse_worldview_matrix) * pos_rel;
   vec4 pos = gl_in[0].gl_Position + vec4(pos_rel,0.0);
   gl_Position = worldviewproj_matrix * pos;
-  gl_TexCoord[0] = vec4( tex.xy, 0.0, 0.0 );
-  gl_FrontColor = vec4( gl_in[0].gl_FrontColor );
+  texCoord = vec2( tex.xy );
+  color = vec4( vdata[0].color );
   EmitVertex();
 }
 
