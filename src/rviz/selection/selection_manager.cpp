@@ -736,6 +736,7 @@ bool SelectionManager::render(Ogre::Viewport* viewport,
   render_viewport->setVisibilityMask(viewport->getVisibilityMask());
 
   ros::WallTime start = ros::WallTime::now();
+  Q_UNUSED(start);
 
   // update & force ogre to render the scene
   Ogre::MaterialManager::getSingleton().addListener(this);
@@ -755,10 +756,11 @@ bool SelectionManager::render(Ogre::Viewport* viewport,
   vis_manager_->getSceneManager()->_renderScene(main_view->getCamera(), main_view, false);
   vis_manager_->getSceneManager()->removeRenderQueueListener(this);
 
+#if 0
   ros::WallTime end = ros::WallTime::now();
   ros::WallDuration d = end - start;
-  //  ROS_DEBUG("Render took [%f] msec", d.toSec() * 1000.0f);
-  Q_UNUSED(d);
+  ROS_DEBUG("Render took [%f] msec", d.toSec() * 1000.0f);
+#endif
 
   Ogre::MaterialManager::getSingleton().removeListener(this);
 
