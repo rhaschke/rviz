@@ -743,6 +743,7 @@ bool SelectionManager::render(Ogre::Viewport* viewport,
 
   render_texture->update();
 
+#if 0
   // For some reason we need to pretend to render the main window in
   // order to get the picking render to show up in the pixelbox below.
   // If we don't do this, it will show up there the *next* time we
@@ -755,6 +756,7 @@ bool SelectionManager::render(Ogre::Viewport* viewport,
   vis_manager_->getSceneManager()->addRenderQueueListener(this);
   vis_manager_->getSceneManager()->_renderScene(main_view->getCamera(), main_view, false);
   vis_manager_->getSceneManager()->removeRenderQueueListener(this);
+#endif
 
 #if 0
   ros::WallTime end = ros::WallTime::now();
