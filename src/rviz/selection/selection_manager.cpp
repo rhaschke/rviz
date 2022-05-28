@@ -644,30 +644,24 @@ bool SelectionManager::render(Ogre::Viewport* viewport,
     x1 = 0;
   if (y1 < 0)
     y1 = 0;
-  if (x1 > viewport->getActualWidth() - 2)
-    x1 = viewport->getActualWidth() - 2;
-  if (y1 > viewport->getActualHeight() - 2)
-    y1 = viewport->getActualHeight() - 2;
+  if (x1 >= viewport->getActualWidth())
+    x1 = viewport->getActualWidth() - 1;
+  if (y1 >= viewport->getActualHeight())
+    y1 = viewport->getActualHeight() - 1;
+
   if (x2 < 0)
     x2 = 0;
   if (y2 < 0)
     y2 = 0;
-  if (x2 > viewport->getActualWidth() - 2)
-    x2 = viewport->getActualWidth() - 2;
-  if (y2 > viewport->getActualHeight() - 2)
-    y2 = viewport->getActualHeight() - 2;
+  if (x2 >= viewport->getActualWidth())
+    x2 = viewport->getActualWidth() - 1;
+  if (y2 >= viewport->getActualHeight())
+    y2 = viewport->getActualHeight() - 1;
 
   if (x2 == x1)
     x2++;
   if (y2 == y1)
     y2++;
-
-  if (x2 == x1 || y2 == y1)
-  {
-    ROS_WARN("SelectionManager::render(): not rendering 0 size area.");
-    vis_manager_->unlockRender();
-    return false;
-  }
 
   unsigned w = x2 - x1;
   unsigned h = y2 - y1;
